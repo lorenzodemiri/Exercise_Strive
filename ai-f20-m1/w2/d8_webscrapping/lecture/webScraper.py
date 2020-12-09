@@ -26,14 +26,13 @@ def plot_temp(dataF):
 
 #Create the Data Frame and Store on it the information
 def get_tenDays(data_input):
-    fin_dic = {"Day":[], "DayN": [],"Date": [],"TempMax": [], "TempMin": [], "Condition": [], "ItemName": []}
+    fin_dic = {"Day":[],"Date": [],"TempMax": [], "TempMin": [], "Condition": [], "ItemName": []}
     for data in data_input:
         temp_day = data.find('span', class_="DailyContent--daypartDate--3MM0J")
         temp_temp_max = data.find('span', class_="DailyContent--temp--_8DL5")
         temp_temp_min = data.find('span', class_="DailyContent--temp--_8DL5" ) #Cannot Get the minimum temperature
         temp_description = data.find('p', class_="DailyContent--narrative--3AcXd")
-        fin_dic["Day"].append(temp_day.text.strip(" ")[1])
-        fin_dic["DayN"].append(temp_day.text.strip(" ")[0])
+        fin_dic["Day"].append(temp_day.text)
         fin_dic["Date"].append("")
         fin_dic["TempMax"].append(convert_temp(temp_temp_max.text))
         fin_dic["TempMin"].append(convert_temp(temp_temp_min.text))
@@ -51,7 +50,6 @@ def get_tenDays(data_input):
                 temp_temp_min = value.find('span', class_="DetailsSummary--lowTempValue--1DlJK")
                 temp_description = value.find('span', class_="DetailsSummary--extendedData--aaFeV")
                 fin_dic["Day"].append(temp_day.text)
-                fin_dic["DayN"].append(temp_day.text.strip(" ")[0])
                 fin_dic["Date"].append("")
                 fin_dic["TempMax"].append(convert_temp(temp_temp_max.text))
                 fin_dic["TempMin"].append(convert_temp(temp_temp_min.text))
@@ -63,6 +61,6 @@ def get_tenDays(data_input):
     return result
 
 print(get_tenDays(weather_el))
-plot_temp(get_tenDays(weather_el))
+#plot_temp(get_tenDays(weather_el))
 
 
