@@ -19,8 +19,6 @@ def convert_temp(string):
 
 def plot_temp(dataF):
     fig = plt.gca()
-    #fig.suptitle('Variation of Temperature Max and Min')
-    dataF['Day'] = dat
     dataF.plot(kind = "line",x= "Day", y="TempMax",color='red', ax=fig)
     dataF.plot(kind = "line",x= "Day", y="TempMin", ax=fig)
     plt.show()
