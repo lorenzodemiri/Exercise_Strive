@@ -36,13 +36,13 @@ def get_tenDays(data_input):
                 fin_dic["Text"].append(temp_description.text)
                 #result.append({'maxTemp': temp_temp_max,'minTemp': temp_temp_min,'Text': temp_description }, ignore_index = True)
 
-    result = pd.DataFrame(fin_dic, ignore_index = True)
+    result = pd.DataFrame(fin_dic)
     return result
 
 
 today_weather(weather_el)
 
-get_tenDays(weather_el)
+print(get_tenDays(weather_el))
 #for we in weather_el:
 #   print(we, end='\n'*2)
 
