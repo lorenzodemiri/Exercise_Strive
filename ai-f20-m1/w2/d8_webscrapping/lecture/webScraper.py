@@ -20,6 +20,7 @@ def convert_temp(string):
 def plot_temp(dataF):
     fig = plt.gca()
     #fig.suptitle('Variation of Temperature Max and Min')
+    dataF['Day'] = dat
     dataF.plot(kind = "line",x= "Day", y="TempMax",color='red', ax=fig)
     dataF.plot(kind = "line",x= "Day", y="TempMin", ax=fig)
     plt.show()
@@ -33,7 +34,7 @@ def get_tenDays(data_input):
         temp_temp_min = data.find('span', class_="DailyContent--temp--_8DL5" ) #Cannot Get the minimum temperature
         temp_description = data.find('p', class_="DailyContent--narrative--3AcXd")
         fin_dic["Day"].append(temp_day.text)
-        fin_dic["Date"].append("")
+        fin_dic["Date"].append("") #TO BE COMPLETED
         fin_dic["TempMax"].append(convert_temp(temp_temp_max.text))
         fin_dic["TempMin"].append(convert_temp(temp_temp_min.text))
         fin_dic["Condition"].append(temp_description.text)
@@ -50,14 +51,14 @@ def get_tenDays(data_input):
                 temp_temp_min = value.find('span', class_="DetailsSummary--lowTempValue--1DlJK")
                 temp_description = value.find('span', class_="DetailsSummary--extendedData--aaFeV")
                 fin_dic["Day"].append(temp_day.text)
-                fin_dic["Date"].append("")
+                fin_dic["Date"].append("") # TO BE COMPLETED
                 fin_dic["TempMax"].append(convert_temp(temp_temp_max.text))
                 fin_dic["TempMin"].append(convert_temp(temp_temp_min.text))
                 fin_dic["Condition"].append(temp_description.text)
                 fin_dic["ItemName"].append(string)
                 
 
-    result = pd.DataFrame(fin_dic)
+    result = pd.DataFrame(fin_dic, index= fin_dic["Day"])
     return result
 
 print(get_tenDays(weather_el))
