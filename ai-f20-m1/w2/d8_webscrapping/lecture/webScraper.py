@@ -25,7 +25,6 @@ def get_tenDays(data_input):
             string = "detailIndex{}".format(i)
             temp_data = data.find_all('div', id=string)
             #print(temp_data)
-            
             for value in temp_data:
                 temp_day = value.find('h2', class_= "DetailsSummary--daypartName--1Mebr")
                 temp_temp_max = value.find('span', class_="DetailsSummary--highTempValue--3x6cL")
@@ -36,13 +35,9 @@ def get_tenDays(data_input):
                 fin_dic["TempMin"].append(temp_temp_min.text)
                 fin_dic["Text"].append(temp_description.text)
                 #result.append({'maxTemp': temp_temp_max,'minTemp': temp_temp_min,'Text': temp_description }, ignore_index = True)
-                print(temp_day.text)
-                print(temp_temp_max.text)
-                print(temp_temp_min.text)
-                print(temp_description.text)
-    result = pd.DataFrame(fin_dic)
 
-    print(result)
+    result = pd.DataFrame(fin_dic, ignore_index = True)
+    return result
 
 
 today_weather(weather_el)
