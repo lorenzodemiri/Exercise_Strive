@@ -7,21 +7,27 @@ soup = BeautifulSoup(page.content, "html.parser")
 results = soup.find(id ='WxuDailyCard-main-a43097e1-49d7-4df7-9d1a-334b29628263')
 #print(results.prettify())
 weather_el =  results.find_all('div', class_='DailyForecast--DisclosureList--350ZO')
-
-
-
-def today_weather(data_input):
-    for data in data_input:
-        date_of_today = data.find('span', class_="DailyContent--daypartDate--3MM0J")
-        temp_of_today = data.find('span', class_="DailyContent--temp--_8DL5")
-        description_text = data.find('p', class_="DailyContent--narrative--3AcXd")
-        print(date_of_today.text)
-        print(temp_of_today.text)
+        
+def convert_temp(string):
+    string = string.replace('°','')
+    temp_c = (int(string) - 32) * (5/9)
+    string = str(int(temp_c)) + "°"
+    return string
 
 def get_tenDays(data_input):
-    fin_dic = {"Day":[],"TempMax": [], "TempMin": [], "Text": []}
+    fin_dic = {"Day":[],"TempMax": [], "TempMin": [], "Condition": []}
     for data in data_input:
-        for i in range(1,10,1):
+        temp_day = data.find('span', class_="DailyContent--daypartDate--3MM0J")
+        temp_temp_max = data.find('span', class_="DailyContent--temp--_8DL5")
+        temp_temp_min = data.find('span', class_="DailyContent--temp--_8DL5" ) #Cannot Get the minimum temperature
+        temp_description = data.find('p', class_="DailyContent--narrative--3AcXd")
+        fin_dic["Day"].append(temp_day.text)
+        fin_dic["TempMax"].append(convert_temp(temp_temp_max.text))
+        fin_dic["TempMin"].append(convert_temp(temp_temp_min.text))
+        fin_dic["Condition"].append(temp_description.text)
+    
+    for data in data_input:
+        for i in range(1,11,1):
             string = "detailIndex{}".format(i)
             temp_data = data.find_all('div', id=string)
             #print(temp_data)
@@ -31,22 +37,13 @@ def get_tenDays(data_input):
                 temp_temp_min = value.find('span', class_="DetailsSummary--lowTempValue--1DlJK")
                 temp_description = value.find('span', class_="DetailsSummary--extendedData--aaFeV")
                 fin_dic["Day"].append(temp_day.text)
-                fin_dic["TempMax"].append(temp_temp_max.text)
-                fin_dic["TempMin"].append(temp_temp_min.text)
-                fin_dic["Text"].append(temp_description.text)
-                #result.append({'maxTemp': temp_temp_max,'minTemp': temp_temp_min,'Text': temp_description }, ignore_index = True)
+                fin_dic["TempMax"].append(convert_temp(temp_temp_max.text))
+                fin_dic["TempMin"].append(convert_temp(temp_temp_min.text))
+                fin_dic["Condition"].append(temp_description.text)
+                
 
     result = pd.DataFrame(fin_dic)
     return result
 
-
-today_weather(weather_el)
-
 print(get_tenDays(weather_el))
-#for we in weather_el:
-#   print(we, end='\n'*2)
 
-#for we in weather_el:
-#    title_elem = we.find('h1', class_='LocationPageTitle--PageHeader--3bC6K DailyForecast--CardHeader--1IoG-')
-#    title_elem2 = title_elem.find('span', class_='LocationPageTitle--PresentationName--Injxu')
-#    print(title_elem2.text)
