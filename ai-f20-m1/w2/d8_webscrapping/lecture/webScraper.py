@@ -57,6 +57,7 @@ def get_tenDays(data_input):
                 
 
     result = pd.DataFrame(fin_dic, index= fin_dic["Day"])
+    result.drop("Day", inplace=True, axis=1)
     return result
 
 print(get_tenDays(weather_el))
