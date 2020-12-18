@@ -1,3 +1,6 @@
 {
-    "python.pythonPath": "D:\\Anaconda\\envs\\first_venv\\python.exe"
+    "python.pythonPath": "D:\\Anaconda\\envs\\first_venv\\python.exe",
+    "files.autoSave": "afterDelay",
+    "python.autoComplete.addBrackets": true,
+    "debug.allowBreakpointsEverywhere": true
 }
