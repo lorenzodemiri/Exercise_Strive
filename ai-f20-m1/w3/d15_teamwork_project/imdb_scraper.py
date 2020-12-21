@@ -66,8 +66,7 @@ def get_rating(input_data):
         film = data.find_all('div', class_='lister-item-content')
         for info in film:
             rating = info.find('span', class_="ipl-rating-star__rating").text
-            if rating == '0':
-                rating = "No rating in the database"
+            rating = float(rating)
             ratings.append(rating)
     return ratings
 
@@ -94,10 +93,36 @@ def create_dataFrame(input_data):
     df = pd.DataFrame(data)
     return df
 
+def print_graph1(mgm_data):
+    print("Mean Value Rating of the MGM 44 action Movie: " + str(round(mgm_data['Rating'].mean(), 2)))
+    print("Mean Duration of MGM 44 Action Movie: " + str(round(mgm_data['Duration'].mean(), 0)))
+    print("Mean Year Production of MGM 44 Action Movie: " + str(round(mgm_data['Years'].mean(), 0)))
+    print(mgm_data.Directors.mode())
+    plt.figure(figsize=(12.5,10))
+    ax1 = plt.scatter(mgm_data['Years'],mgm_data['Movie Title'],s=150, color='gold')
+    ax1 = plt.grid(b=True)
+    ax1 = plt.rc('grid', linestyle="-", color='black')
+    ax1 = plt.xlabel("Years", fontsize=15)
+    ax1 = plt.ylabel("Title Films", fontsize=15)
+    ax1 = plt.title("Films Over Time", fontsize=20)
+    plt.show()
+
+def print_graph2(mgm_data):
+    plt.figure(figsize=(10,7))
+    plt.bar(mgm_data['Years'],mgm_data['Rating'], color='Gold',label="Variation of Ratings over time")
+    plt.title("Variation of Ratings over Films")
+    plt.xlabel("Years")
+    plt.ylabel("Ratings Value")
+    mean = mgm_data['Rating'].mean()
+    line = plt.axhline(mean)
+    plt.legend(loc='upper right')
+    plt.show()
+
 #print(get_directors(mgm_film_data))
 #get_description(mgm_film_data)
 mgm_data = create_dataFrame(mgm_film_data)
-print(mgm_data)
+print_graph1(mgm_data)
+print_graph2(mgm_data)
 #mgm_data.sort_value('Duration')
 #h = plt.hist(mgm_data['Duration'],mgm_data['Rating'])
 #plt.show()
