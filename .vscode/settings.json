@@ -1,7 +1,8 @@
 {
-    "python.pythonPath": "d:\\Anaconda\\envs\\second_venv\\python.exe",
+    "python.pythonPath": "d:\\Anaconda\\envs\\myvenv\\python.exe",
     "files.autoSave": "afterDelay",
     "python.autoComplete.addBrackets": true,
     "debug.allowBreakpointsEverywhere": true,
-    "python.analysis.completeFunctionParens": true
+    "python.analysis.completeFunctionParens": true,
+    "jupyter.jupyterServerType": "local"
 }
