@@ -5,7 +5,7 @@ The homework for today is split into two parts:
 - Hierarchical Clustering
 
 # 01 Partitional Clustering  (K-Means)
-Read the associated [paper](https://drive.google.com/file/d/1vOKyDRe6mIBTFhdq8d_PfQSfqz_H5dWL/view) and review the class slides. Inside **exercises> 01 Partitional Clustering**  
+Read the associated **Chapter 8 in the** [paper](https://drive.google.com/file/d/1vOKyDRe6mIBTFhdq8d_PfQSfqz_H5dWL/view) and review the class slides. Inside **exercises> 01 Partitional Clustering**  
 - *exercise_01_looking_for_clusters_visually.ipynb
 - *exercise_02_clustering_2D_points.ipynb
 - *exercise_03_inspect_your_clustering.ipynb
@@ -25,8 +25,8 @@ It is a series of short notebooks to test your understanding via jupyter noteboo
 - *exercise_14_intermediate_clusterings.ipynb
 - *exercise_15_extracting_cluster_labels.ipynb
 
-# 03 - BONUS Challenge
-Implement K-Means from scratch based on this [tutorial with 2D arrays](https://pythonprogramming.net/k-means-from-scratch-machine-learning-tutorial/). 
+# 03 - If you finish earlyBONUS Challenge
+You can go back to the previous lectures, there are some fun Easter Eggs such as implementing PCA only with Numpy ;)  
 
 ## How to run the notebooks
 
