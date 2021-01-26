@@ -37,6 +37,7 @@ class KNN:
         self.X_train = np.array(X_train)
         self.Y_train = np.array(Y_train)
         self.n = len(self.X_train)
+        return self
 
     def predict(self, X_test):
         #Casting the elements to keep data integrety
@@ -50,11 +51,9 @@ class KNN:
             predictions.append(max(self.target_classificator(labels), key = label_dict.get))
         return predictions
 
-    def score(self, X_test, Y_test):
-        counter = 0
-        for x, y in zip(X_test, Y_test):
-            if x == y: counter += 1
-        return counter / len(Y_test)
+    def score(self, Y_test, Y_pred):
+        from sklearn.metrics import accuracy_score
+        return accuracy_score(Y_test, Y_pred)
 
 """
 from sklearn.model_selection import train_test_split
