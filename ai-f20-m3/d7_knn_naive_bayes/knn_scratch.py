@@ -55,10 +55,10 @@ class KNN:
         from sklearn.metrics import accuracy_score
         return accuracy_score(Y_test, Y_pred)
 
-"""
+'''
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_blobs
-X, y = make_blobs(n_samples=300, centers = 4, cluster_std=0.6, random_state=0)
+X, y = make_blobs(n_samples=50, centers = 4, cluster_std=0.6, random_state=0)
 print(X.shape, y.shape)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 1/3, random_state = 0)
@@ -67,4 +67,4 @@ knn = KNN(4)
 knn.fit(X_train, y_train)
 y_pred = knn.predict(X_test)
 print(knn.score(y_pred, y_test))
-"""
+'''
