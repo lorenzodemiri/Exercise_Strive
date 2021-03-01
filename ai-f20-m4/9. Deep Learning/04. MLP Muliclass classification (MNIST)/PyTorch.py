@@ -90,5 +90,5 @@ for e in range(epochs):
 
         if i % print_every == 0:
             print(f"\tIteration: {i}\t Loss: {running_loss/print_every:.4f}")
-            running_loss == 0
+            running_loss = 0
 

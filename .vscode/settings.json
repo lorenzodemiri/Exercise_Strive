@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "d:\\Anaconda\\envs\\env_pytorch\\python.exe",
+    "python.pythonPath": "D:\\Conda\\envs\\pytorch\\python.exe",
     "files.autoSave": "afterDelay",
     "python.autoComplete.addBrackets": true,
     "debug.allowBreakpointsEverywhere": true,
