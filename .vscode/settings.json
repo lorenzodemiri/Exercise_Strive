@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "d:\\anaconda3\\envs\\tf-gpu-cuda8\\python.exe",
+    "python.pythonPath": "/home/lorenzo/anaconda3/envs/std_env/bin/python",
     "files.autoSave": "afterDelay",
     "python.autoComplete.addBrackets": true,
     "debug.allowBreakpointsEverywhere": true,
