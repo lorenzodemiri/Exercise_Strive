@@ -2,6 +2,8 @@ import imutils
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+os.environ['DISPLAY'] = ':0'
 
 def detect(countorn):
     shape = "not_found"
