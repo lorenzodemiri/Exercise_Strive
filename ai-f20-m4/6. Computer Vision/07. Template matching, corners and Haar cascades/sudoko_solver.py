@@ -15,7 +15,9 @@ def save_image(img, contourn, path_string):
     x, y, w, h = cv2.boundingRect(contourn) 
     cropped_contour = img[y: y+h, x: x + w]
     ret,thresh = cv2.threshold(cropped_contour,127,255,cv2.THRESH_BINARY_INV)
-    output = cv2.resize(thresh, (28, 28))
+    kernel = np.ones((2,2))
+    dilated_img = cv2.dilate(thresh,kernel) 
+    output = cv2.resize(dilated_img, (28, 28))
     cv2.imwrite(path_string, output)
     #print_image(cropped_contour)
     return 
