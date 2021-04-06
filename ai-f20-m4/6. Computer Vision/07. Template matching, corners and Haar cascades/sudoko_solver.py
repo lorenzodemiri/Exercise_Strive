@@ -16,16 +16,17 @@ def save_image(img, contourn, path_string):
     cropped_contour = img[y: y+h, x: x + w]
     ret,thresh = cv2.threshold(cropped_contour,127,255,cv2.THRESH_BINARY_INV)
     kernel = np.ones((2,2))
-    dilated_img = cv2.dilate(thresh,kernel) 
-    output = cv2.resize(dilated_img, (28, 28))
+    #eroded_img = cv2.erode(thresh, kernel, iterations=1) 
+    output = cv2.resize(thresh, (28, 28))
     cv2.imwrite(path_string, output)
     #print_image(cropped_contour)
     return 
 
-image = cv2.imread('6. Computer Vision/07. Template matching, corners and Haar cascades/img/sudoku.jpg', 0)
-#gray = cv2.cvtColor(image, cv2.COLOR_BAYER_BG2GRAY)
+image = cv2.imread('ai-f20-m4/6. Computer Vision/07. Template matching, corners and Haar cascades/img/sudoku.jpg', 0)
+#print_image(image)
+#gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 thresh = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 57, 5)
-print(thresh.shape)
+#print(thresh.shape)
 contourns, h = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
 
@@ -61,9 +62,10 @@ for (i, c) in enumerate(contourns, 1):
             sudoku_rows.append(contourns)
             temp_row = []
 
-string_path = '6. Computer Vision/07. Template matching, corners and Haar cascades/img_r/cell_{}_{}.jpg'
+string_path = 'ai-f20-m4/6. Computer Vision/07. Template matching, corners and Haar cascades/img_r/cell_{}_{}.jpg'
 for row, i in zip(sudoku_rows, range(1,10,1)):
     for c, j in zip(row, range(1,10,1)):
+        print("saving")
         save_image(image.copy(), c, string_path.format(i,j))
         '''
         mask = np.zeros(image.shape, dtype=np.uint8)
